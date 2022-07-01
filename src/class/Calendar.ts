@@ -47,6 +47,10 @@ export default class Calendar implements ICalendar {
     this.selectDate.add(-1, this.typeCalendar)
   }
 
+  setDate(date = moment()) {
+    this.selectDate = date
+  }
+
   gridCalendar(): moment.Moment[] {
     return []
   }
