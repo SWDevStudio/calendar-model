@@ -2,7 +2,7 @@
   "name": "calendar-model",
   "version": "0.0.0",
   "description": "Модель для вашего календаря",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Kotaro",
   "license": "MIT",
   "scripts": {
