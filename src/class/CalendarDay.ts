@@ -1,24 +1,22 @@
 import Calendar from "./Calendar";
-import moment, {unitOfTime} from "moment";
+import moment from "moment";
+import {OptionCalendar} from "../interface/OptionCalendar";
+import {ICalendar} from "../interface/ICalendar";
 
-export default class CalendarDay implements Calendar {
-  selectDate: moment.Moment;
-  readonly type: moment.unitOfTime.StartOf;
-
-  constructor(date = moment(), type: unitOfTime.StartOf = 'isoWeek') {
-    this.selectDate = date
-    this.type = type
+export default class CalendarDay extends Calendar implements ICalendar {
+  constructor(props?: OptionCalendar) {
+    super({
+      date: props?.date,
+      typeCalendar: props?.typeCalendar || 'day',
+      typeStart: props?.typeStart || 'day'
+    });
   }
 
-  get gridCalendar(): moment.Moment[] {
-    return [this.selectDate]
-  }
-
-  gridCalendarWithTime(start = 0, end = 24, step = 1): moment.Moment[] {
+  gridCalendar(start = 0, end = 24, step = 1): moment.Moment[] {
     const arr = []
 
     for (let hour = start; hour < end / step; hour++) {
-      const startDay = this.selectDate.startOf('day')
+      const startDay = this.selectDate.startOf(this.typeStart)
       arr.push(
         moment(startDay.add(hour, 'hour'))
       )
@@ -26,13 +24,4 @@ export default class CalendarDay implements Calendar {
 
     return arr
   }
-
-  swapNextDate(): void {
-    this.selectDate.add(1, 'day')
-  }
-
-  swapPrevDate(): void {
-    this.selectDate.add(-1, 'day')
-  }
-
 }

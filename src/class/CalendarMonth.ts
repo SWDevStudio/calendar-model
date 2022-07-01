@@ -1,21 +1,24 @@
 import Calendar from "./Calendar";
-import moment, {unitOfTime} from "moment";
+import moment from "moment";
+import {ICalendar} from "../interface/ICalendar";
+import {OptionCalendar} from "../interface/OptionCalendar";
 
-export default class CalendarMonth implements Calendar {
-  readonly type: unitOfTime.StartOf = 'month';
+export default class CalendarMonth extends Calendar implements ICalendar {
 
-  selectDate: moment.Moment;
-
-  constructor(date: moment.Moment = moment()) {
-    this.selectDate = date
+  constructor(props?: OptionCalendar) {
+    super({
+      date: props?.date,
+      typeCalendar: props?.typeCalendar || 'month',
+      typeStart: props?.typeStart || 'month'
+    });
   }
 
   get firstDay(): moment.Moment {
-    return moment(this.selectDate.startOf(this.type))
+    return moment(this.selectDate.startOf(this.typeStart))
   }
 
   get lastDay(): moment.Moment {
-    return moment(this.selectDate.endOf(this.type))
+    return moment(this.selectDate.endOf(this.typeStart))
   }
 
   get daysPrevMonth(): moment.Moment[] {
@@ -49,19 +52,11 @@ export default class CalendarMonth implements Calendar {
     return days
   }
 
-  get gridCalendar(): any[] {
+  gridCalendar(): moment.Moment[] {
     return [
       ...this.daysPrevMonth,
       ...this.daysMonth,
       ...this.daysNextMonth
     ];
-  }
-
-  swapNextDate(): void {
-    this.selectDate.add(1, 'month')
-  }
-
-  swapPrevDate(): void {
-    this.selectDate.add(-1, 'month')
   }
 }
