@@ -1,9 +1,8 @@
 import Calendar from "./Calendar";
-import moment from "moment";
-import {TIME_FORMAT} from "../data/TIME_FORMAT";
+import moment, {unitOfTime} from "moment";
 
 export default class CalendarMonth implements Calendar {
-  type: moment.DurationInputArg2 = 'month';
+  readonly type: unitOfTime.StartOf = 'month';
 
   selectDate: moment.Moment;
 
@@ -59,10 +58,10 @@ export default class CalendarMonth implements Calendar {
   }
 
   swapNextDate(): void {
-    this.selectDate.add(1, this.type)
+    this.selectDate.add(1, 'month')
   }
 
   swapPrevDate(): void {
-    this.selectDate.add(-1, this.type)
+    this.selectDate.add(-1, 'month')
   }
 }

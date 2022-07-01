@@ -1,7 +1,7 @@
-import moment from 'moment'
+import moment, {unitOfTime} from 'moment'
 
 export default abstract class Calendar {
-  type!: moment.DurationInputArg2
+  readonly type!: unitOfTime.StartOf
 
   selectDate!: moment.Moment
 
