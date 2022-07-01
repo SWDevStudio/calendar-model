@@ -1,0 +1,16 @@
+{
+  "name": "calendar-model",
+  "version": "0.0.0",
+  "description": "Модель для вашего календаря",
+  "main": "index.js",
+  "author": "Kotaro",
+  "license": "MIT",
+  "scripts": {
+    "start": ""
+  },
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "moment": "^2.29.3",
+    "parcel-bundler": "^1.12.5"
+  }
+}
