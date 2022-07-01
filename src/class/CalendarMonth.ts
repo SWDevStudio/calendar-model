@@ -52,9 +52,9 @@ export default class CalendarMonth implements Calendar {
 
   get gridCalendar(): any[] {
     return [
-      ...this.daysPrevMonth.map(i => i.format(TIME_FORMAT)),
-      ...this.daysMonth.map(i => i.format(TIME_FORMAT)),
-      ...this.daysNextMonth.map(i => i.format(TIME_FORMAT))
+      ...this.daysPrevMonth,
+      ...this.daysMonth,
+      ...this.daysNextMonth
     ];
   }
 
