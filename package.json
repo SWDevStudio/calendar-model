@@ -6,7 +6,8 @@
   "author": "Kotaro",
   "license": "MIT",
   "scripts": {
-    "start": ""
+    "dev": "parcel src/index.ts",
+    "build": "parcel build src/index.ts"
   },
   "dependencies": {
     "@types/moment": "^2.13.0",
