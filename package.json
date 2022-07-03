@@ -1,6 +1,6 @@
 {
   "name": "calendar-model",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Модель для вашего календаря",
   "main": "dist/index.js",
   "author": "Kotaro",
@@ -15,6 +15,7 @@
     "moment": "^2.29.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.6",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
     "jest": "^28.1.2",
