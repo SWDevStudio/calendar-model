@@ -9,7 +9,7 @@ export default class CalendarMonth extends Calendar implements ICalendar {
     super({
       date: props?.date,
       typeCalendar: props?.typeCalendar || 'month',
-      typeStart: props?.typeStart || 'month'
+      startDay: props?.startDay
     });
   }
 
@@ -22,7 +22,7 @@ export default class CalendarMonth extends Calendar implements ICalendar {
   }
 
   get daysPrevMonth(): moment.Moment[] {
-    const amountPrevDays = this.firstDay.isoWeekday() - 1
+    const amountPrevDays = this.firstDay.isoWeekday() - (this.startDay === 'sunday' ? 0 : 1)
     let dayPrev = []
 
     for (let i = 1; i <= amountPrevDays; i++) {
@@ -33,7 +33,14 @@ export default class CalendarMonth extends Calendar implements ICalendar {
   }
 
   get daysNextMonth(): moment.Moment[] {
-    const amountNextDays = 7 - this.lastDay.isoWeekday()
+    let amountNextDays
+    if (this.startDay === 'sunday') {
+      amountNextDays = 6 - this.lastDay.weekday()
+    } else {
+      amountNextDays = 7 - this.lastDay.isoWeekday()
+    }
+
+
     const dayNext = []
 
     for (let i = 1; i <= amountNextDays; i++) {

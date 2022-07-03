@@ -9,7 +9,7 @@ export default class CalendarWeek extends Calendar implements ICalendar {
     super({
       date: props?.date,
       typeCalendar: props?.typeCalendar || 'week',
-      typeStart: props?.typeStart || 'isoWeek'
+      startDay: props?.startDay
     });
   }
 

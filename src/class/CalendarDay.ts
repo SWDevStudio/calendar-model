@@ -8,7 +8,6 @@ export default class CalendarDay extends Calendar implements ICalendar {
     super({
       date: props?.date,
       typeCalendar: props?.typeCalendar || 'day',
-      typeStart: props?.typeStart || 'day'
     });
   }
 

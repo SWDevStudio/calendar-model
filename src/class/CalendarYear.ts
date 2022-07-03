@@ -7,7 +7,6 @@ export default class CalendarYear extends Calendar implements ICalendar {
     super({
       date: props?.date,
       typeCalendar: props?.typeCalendar || 'year',
-      typeStart: props?.typeStart || 'year'
     });
   }
 

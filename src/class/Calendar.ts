@@ -7,10 +7,12 @@ export default class Calendar implements ICalendar {
 
   readonly typeCalendar!: moment.DurationInputArg2
 
+  startDay: 'monday' | 'sunday'
+
   selectDate!: moment.Moment
 
   constructor({
-    date, typeStart,typeCalendar
+    date, typeCalendar, startDay
   }: OptionCalendar) {
     this.selectDate = date || moment()
 
@@ -18,23 +20,23 @@ export default class Calendar implements ICalendar {
       throw new Error('Укажите тип календаря')
     }
     this.typeCalendar = typeCalendar
+    this.startDay = startDay || 'monday'
 
-    if (!typeStart) {
-      switch (typeCalendar) {
-        case "week":
-          this.typeStart = 'isoWeek'
-          break
-        case "day":
-          this.typeStart = 'day'
-          break
-        case "year":
-          this.typeStart = 'year'
-          break
-        default:
-          this.typeStart = 'month'
-      }
-    } else  {
-      this.typeStart = typeStart
+    switch (typeCalendar) {
+      case "week":
+        this.typeStart =  this.startDay === 'monday' ? 'isoWeek' : 'week'
+        break
+      case "day":
+        this.typeStart = 'day'
+        break
+      case "year":
+        this.typeStart = 'year'
+        break
+      case "month":
+        this.typeStart = 'month'
+        break
+      default:
+        throw new Error('Не удалось определить тип календаря.')
     }
   }
 
