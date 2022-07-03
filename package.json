@@ -1,6 +1,6 @@
 {
   "name": "calendar-model",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Модель для вашего календаря",
   "main": "dist/index.js",
   "author": {
@@ -15,7 +15,8 @@
   "scripts": {
     "dev": "parcel src/index.ts",
     "build": "parcel build src/index.ts",
-    "test": "jest"
+    "test": "jest",
+    "deploy-npm": "yarn build && yarn publish"
   },
   "dependencies": {
     "moment": "^2.29.3"
