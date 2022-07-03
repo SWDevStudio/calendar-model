@@ -18,9 +18,14 @@
 const optionCalendar = {
   date: moment(),
   // В зависимости от календаря
+  
   // На данный момент генерация где воскресенье 1й день не сделана.
+  
+  // Нужно для сдвига даты на день, неделю, месяц, год
   typeStart: 'day' || 'isoWeek' || 'month' || 'year',
-  typeCalendar: 'day' || 'week' || 'month' || 'year'
+  
+  // Указывает на тип календаря на день, неделю, месяц, год
+  typeCalendar: 'day' || 'week' || 'month' || 'year' 
 }
 ```
 
@@ -46,8 +51,8 @@ const calendar = new CalendarMonth({
 calendar.swapNextDate()
 // Получим массив за Август
 calendar.gridCalendar()
-// Вернемся в исходное
-calendar.swapNextDate()
+// Сдвинет дату календаря на 1 мес назад.
+calendar.swapPrevDate()
 ```
 
 Так же есть дополнительный метод
