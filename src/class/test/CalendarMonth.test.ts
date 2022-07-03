@@ -3,7 +3,7 @@ import moment from "moment";
 import {TIME_FORMAT} from "../../data/TIME_FORMAT";
 
 describe('Тестирование класса CalendarMonth', function () {
-  it('Класс календарь существует.', () => {
+  it('Класс существует.', () => {
     const calendar = new CalendarMonth()
 
     expect(
