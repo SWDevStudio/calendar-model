@@ -43,4 +43,30 @@ describe('Тестирование класса CalendarMonth', function () {
     ).toBe('03.07.2022')
 
   })
+
+  it('Сетка возвращает корректные данные начало с воскресенья.', () => {
+    const calendar = new CalendarMonth({ date: moment('02.07.2022', TIME_FORMAT), startDay: 'sunday' })
+
+    let grid = calendar.gridCalendar()
+
+    expect(
+      grid[0].format(TIME_FORMAT),
+    ).toBe('26.06.2022')
+
+    expect(
+      grid[grid.length - 1].format(TIME_FORMAT),
+    ).toBe('06.08.2022')
+
+    calendar.swapPrevDate()
+    grid = calendar.gridCalendar()
+
+    expect(
+      grid[0].format(TIME_FORMAT),
+    ).toBe('29.05.2022')
+
+    expect(
+      grid[grid.length - 1].format(TIME_FORMAT),
+    ).toBe('02.07.2022')
+
+  })
 });
