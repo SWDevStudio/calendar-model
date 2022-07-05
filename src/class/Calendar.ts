@@ -1,6 +1,7 @@
 import moment, {unitOfTime} from 'moment'
 import {ICalendar} from "../interface/ICalendar";
 import {OptionCalendar} from "../interface/OptionCalendar";
+import {TIME_FORMAT} from "../data/TIME_FORMAT";
 
 export default class Calendar implements ICalendar {
   readonly typeStart!: unitOfTime.StartOf
@@ -12,9 +13,12 @@ export default class Calendar implements ICalendar {
   selectDate!: moment.Moment
 
   constructor({
-    date, typeCalendar, startDay
+    date, typeCalendar, startDay, format
   }: OptionCalendar) {
-    this.selectDate = date || moment()
+    if (typeof date === 'string')
+      this.selectDate = moment(date, format || TIME_FORMAT) || moment()
+    else
+      this.selectDate = date || moment()
 
     if (!typeCalendar) {
       throw new Error('Укажите тип календаря')
@@ -40,7 +44,6 @@ export default class Calendar implements ICalendar {
     }
   }
 
-
   swapNextDate(): void {
     this.selectDate.add(1, this.typeCalendar)
   }
@@ -49,8 +52,8 @@ export default class Calendar implements ICalendar {
     this.selectDate.add(-1, this.typeCalendar)
   }
 
-  setDate(date = moment()) {
-    this.selectDate = date
+  setDate(date: moment.Moment | string = moment(), format: string = TIME_FORMAT) {
+    this.selectDate = typeof date === 'string' ? moment(date, format) : date
   }
 
   gridCalendar(): moment.Moment[] {

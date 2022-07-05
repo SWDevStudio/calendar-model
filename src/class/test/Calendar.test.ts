@@ -48,4 +48,17 @@ describe('Тестирование класса Calendar', function () {
 
     expect(calendar.selectDate.format(TIME_FORMAT)).toBe(moment().add(-1, 'month').format(TIME_FORMAT))
   });
+
+  it('Стартовая дата корректно задается при передачи строки.', function () {
+    const calendar = new Calendar({
+      date: '28.04.1999',
+      typeCalendar: 'month',
+      startDay: 'monday'
+    })
+
+    expect(calendar.selectDate.format(TIME_FORMAT)).toBe('28.04.1999')
+
+    calendar.setDate('25.03.2011')
+    expect(calendar.selectDate.format(TIME_FORMAT)).toBe('25.03.2011')
+  });
 });
